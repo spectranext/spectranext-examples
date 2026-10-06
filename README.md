@@ -4,6 +4,13 @@ This directory contains complete, working examples demonstrating how to use the 
 
 ## Examples
 
+### bad-apple
+
+Streams a 192×144, 25 fps movie with AY music from the current HTTP(S) mount.
+Demonstrates background `cp` enginecalls, XFS RAM caching, and alternating
+controller RAM banks. CMake generates the movie chunks from the source GIF.
+See [bad-apple/README.md](bad-apple/README.md) for build and run instructions.
+
 ### https-example
 
 Demonstrates how to make HTTPS requests using the `httplib` library. 

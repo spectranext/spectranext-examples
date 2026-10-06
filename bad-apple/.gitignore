@@ -1,0 +1,5 @@
+build/
+cmake-build-*/
+__pycache__/
+*.o
+*.sym
