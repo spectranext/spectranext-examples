@@ -4,6 +4,12 @@ This directory contains complete, working examples demonstrating how to use the 
 
 ## Examples
 
+### p2p-chat
+
+[Peer-to-peer chat](p2p-chat/README.md): a minimal C TCP chat using
+`p2p-chat@match.spx`. The system supplies the peer menu and connection setup;
+both participants run the same program. Type a line and press Enter to send.
+
 ### bad-apple
 
 Streams a 192×144, 25 fps movie with AY music from the current HTTP(S) mount.
