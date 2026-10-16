@@ -1,0 +1,3 @@
+# Build-time artwork and UI generators (Bad Apple and Hacker News).
+Pillow>=10.2
+PyYAML>=6.0

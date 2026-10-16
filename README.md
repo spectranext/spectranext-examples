@@ -2,6 +2,38 @@
 
 This directory contains complete, working examples demonstrating how to use the Spectranext SDK.
 
+## Build
+
+Clone with submodules so Hacker News has its ZXGUI dependency:
+
+```sh
+git clone --recurse-submodules https://github.com/spectranext/spectranext-examples.git
+cd spectranext-examples
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Load your SDK environment (Homebrew on macOS, or `/sdk/source.sh` in either
+SDK Docker image). A host C++ compiler is needed for Bad Apple's artwork tool;
+the Docker SDK images include one.
+
+```sh
+source "$(brew --prefix spectranext-sdk)/libexec/source.sh"  # macOS
+cmake -S p2p-chat -B p2p-chat/build
+cmake --build p2p-chat/build
+cmake --build p2p-chat/build --target boot_file
+```
+
+Use the same commands with any example directory. Normal builds compile locally;
+only the explicit upload/autoboot targets contact a device. In `file-io-example`,
+the upload targets also send `data.txt`.
+
+The SDK repository's **Build all examples** PR workflow discovers every top-level
+`*/CMakeLists.txt` here and builds each with Homebrew, Docker Ubuntu and Docker
+Alpine. It checks for nonempty TAP and `boot.zx` outputs and keeps per-example
+logs. These are build checks; they do not run programs on a cartridge or emulator.
+
 ## Examples
 
 ### p2p-chat

@@ -19,7 +19,6 @@ target_link_libraries(file_io_example PUBLIC
     -llibspectranet
 )
 target_link_options(file_io_example PUBLIC -debug -create-app)
-add_dependencies(file_io_example upload_data_txt)
 
 # Set boot BASIC program (optional)
 # This creates a boot.zx file that will be uploaded before your program
@@ -29,3 +28,7 @@ spectranext_set_boot("
 ")
 
 spectranext_add_extra_outputs(file_io_example)
+
+# Ordinary builds are offline. Upload the sample data only when deploying.
+add_dependencies(file_io_example_upload_bin upload_data_txt)
+add_dependencies(file_io_example_upload_tap upload_data_txt)

@@ -4,7 +4,7 @@
 #include <spectranet.h>
 
 // Function to scan a directory and check entries
-static int scan_directory(const char* dir_path)
+static int scan_directory(char* dir_path)
 {
     printf("\nScanning directory: %s\n", dir_path);
     

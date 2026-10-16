@@ -4,3 +4,4 @@
 */.ticks_history.txt
 *.inc.h
 /.idea/*
+/.venv/
