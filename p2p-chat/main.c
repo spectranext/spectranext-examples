@@ -5,6 +5,7 @@
 #include <netdb.h>
 #include <sockpoll.h>
 #include <spectranet.h>
+#include <spectranext.h>
 #include <sys/socket.h>
 
 #define SERVICE "p2p-chat@match.spx"
@@ -62,6 +63,22 @@ static void erase_prompt(int length)
         putchar('\x08');
 }
 
+/* A single bounded getter serves local identity and connected peer metadata. */
+static void show_identity(void)
+{
+    char value[65];
+    if (!spectranext_get_string(SPECTRANEXT_STRING_MATCH_NAME, value, sizeof(value)))
+        printf("You: %s\n", value);
+    if (!spectranext_get_string(SPECTRANEXT_STRING_SERIAL, value, sizeof(value)))
+        printf("Your serial: %s\n", value);
+    if (!spectranext_get_string(SPECTRANEXT_STRING_MATCH_PEER_NAME, value, sizeof(value)))
+        printf("Peer: %s\n", value);
+    if (!spectranext_get_string(SPECTRANEXT_STRING_MATCH_PEER_SERIAL, value, sizeof(value)))
+        printf("Peer serial: %s\n", value);
+    if (!spectranext_get_string(SPECTRANEXT_STRING_MATCH_INITIATOR_SERIAL, value, sizeof(value)))
+        printf("Initiator: %s\n", value);
+}
+
 int main(void)
 {
     char line[LINE_LENGTH + 2], incoming[LINE_LENGTH + 1], buffer[64];
@@ -79,7 +96,9 @@ int main(void)
         return 1;
     }
 
-    printf("\x0cPeer-to-peer chat\nConnected!\nEnter: send  /quit: leave\n24 characters per message.\n\n> ");
+    printf("\x0cPeer-to-peer chat\nConnected!\n");
+    show_identity();
+    printf("Enter: send  /quit: leave\n24 characters per message.\n\n> ");
     in_WaitForNoKey();
     for (;;)
     {
